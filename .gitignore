@@ -1,0 +1,14 @@
+# Local editor state
+.idea/
+.vscode/
+
+# Local release staging
+dist/
+releases/
+*.dmg
+*.zip
+*.tar.gz
+*.app
+
+# macOS
+.DS_Store

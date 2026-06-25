@@ -1,0 +1,11 @@
+{
+  "name": "atrium-releases",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "publish:snapshot": "bash scripts/publish-github-release.sh --tag snapshot-latest",
+    "publish": "bash scripts/publish-github-release.sh",
+    "publish:check": "bash scripts/publish-github-release.sh --tag snapshot-latest --dry-run"
+  }
+}
