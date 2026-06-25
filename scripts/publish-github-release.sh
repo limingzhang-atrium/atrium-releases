@@ -29,6 +29,23 @@ GITHUB_REPO="limingzhang-atrium/atrium-releases"
 DIST_ROOT="$ROOT_DIR/dist"
 DRY_RUN=0
 
+# gh_with_retry 对 GitHub API 偶发 EOF/SSL 中断做少量重试；非网络错误仍会按原退出码失败。
+gh_with_retry() {
+  local attempt=1
+  local max_attempts=3
+  local status=0
+  while true; do
+    "$@" && return 0
+    status=$?
+    if [[ "$attempt" -ge "$max_attempts" ]]; then
+      return "$status"
+    fi
+    echo "[publish-github] gh command failed, retrying (${attempt}/${max_attempts}) ..." >&2
+    sleep "$attempt"
+    attempt=$((attempt + 1))
+  done
+}
+
 # 解析发布参数；真正要发布哪个版本由 dist/<tag> 决定。
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -80,11 +97,19 @@ fi
 STAGE_DIR="$DIST_ROOT/$TAG"
 NOTES_FILE="$STAGE_DIR/RELEASE_NOTES.md"
 MANIFEST_FILE="$STAGE_DIR/Atrium-${TAG}-manifest.json"
-RELEASE_TITLE="Atrium ${TAG}"
-PRERELEASE_FLAG=()
+RELEASE_TITLE="$TAG"
+CREATE_FLAGS=()
+EDIT_FLAGS=()
 
-if [[ "$TAG" == snapshot* ]]; then
-  PRERELEASE_FLAG=(--prerelease)
+if [[ "$TAG" == "snapshot-latest" ]]; then
+  CREATE_FLAGS=(--latest)
+  EDIT_FLAGS=(--prerelease=false --latest)
+elif [[ "$TAG" == snapshot* ]]; then
+  CREATE_FLAGS=(--prerelease --latest=false)
+  EDIT_FLAGS=(--prerelease --latest=false)
+else
+  CREATE_FLAGS=(--latest)
+  EDIT_FLAGS=(--prerelease=false --latest)
 fi
 
 if [[ ! -d "$STAGE_DIR" ]]; then
@@ -133,30 +158,35 @@ GH_MISSING
 fi
 
 # GitHub Release 不支持同名 asset 覆盖，先删除旧 asset，再上传本次 staging 文件。
-if gh release view "$TAG" --repo "$GITHUB_REPO" >/dev/null 2>&1; then
+if gh_with_retry gh release view "$TAG" --repo "$GITHUB_REPO" >/dev/null 2>&1; then
   echo "[publish-github] release exists, replacing assets on $TAG ..."
 else
   echo "[publish-github] creating release $TAG ..."
-  gh release create "$TAG" \
+  CREATE_ERROR="$(mktemp)"
+  if ! gh_with_retry gh release create "$TAG" \
     --repo "$GITHUB_REPO" \
     --title "$RELEASE_TITLE" \
     --notes-file "$NOTES_FILE" \
-    "${PRERELEASE_FLAG[@]}"
+    "${CREATE_FLAGS[@]}" 2>"$CREATE_ERROR"; then
+    if grep -qiE 'tag_name already exists|already exists' "$CREATE_ERROR"; then
+      echo "[publish-github] release already exists remotely, continuing with asset replacement ..."
+    else
+      cat "$CREATE_ERROR" >&2
+      rm -f "$CREATE_ERROR"
+      exit 1
+    fi
+  fi
+  rm -f "$CREATE_ERROR"
 fi
 
-for asset_path in "${ASSETS[@]}"; do
-  asset_name="$(basename "$asset_path")"
-  gh release delete-asset "$TAG" "$asset_name" --repo "$GITHUB_REPO" --yes >/dev/null 2>&1 || true
-done
-
-gh release upload "$TAG" "${ASSETS[@]}" --repo "$GITHUB_REPO"
+gh_with_retry gh release upload "$TAG" "${ASSETS[@]}" --repo "$GITHUB_REPO" --clobber
 
 # 已存在 release 时同步更新说明，确保 checksum 与 latest asset 一致。
-gh release edit "$TAG" \
+gh_with_retry gh release edit "$TAG" \
   --repo "$GITHUB_REPO" \
   --title "$RELEASE_TITLE" \
   --notes-file "$NOTES_FILE" \
-  "${PRERELEASE_FLAG[@]}"
+  "${EDIT_FLAGS[@]}"
 
 echo "[publish-github] done:"
 echo "https://github.com/${GITHUB_REPO}/releases/tag/${TAG}"

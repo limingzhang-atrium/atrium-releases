@@ -68,17 +68,17 @@ Atrium-snapshot-20260625-2215-macos-arm64.app.zip.sha256
 
 ## Rolling Latest Snapshot / 滚动最新版 Snapshot
 
-If a fixed snapshot download URL is needed, maintain one mutable prerelease named `snapshot-latest`.
+If a fixed snapshot download URL should also appear in the repository sidebar, maintain one mutable release named `snapshot-latest` and mark it as Latest.
 
-如果需要一个固定的 snapshot 下载地址，可以维护一个可覆盖的 prerelease：`snapshot-latest`。
+如果固定 snapshot 下载地址也需要显示在仓库右侧栏，可以维护一个可覆盖的 release：`snapshot-latest`，并标记为 Latest。
 
-- Release type: GitHub Prerelease
+- Release type: normal GitHub Release marked as Latest
 - Tag: `snapshot-latest`
 - Asset names should stay fixed.
 - Old assets should be deleted before uploading new assets with the same filenames.
 - This channel is intentionally mutable and should not be used for reproducible release history.
 
-- 发布类型：GitHub Prerelease
+- 发布类型：标记为 Latest 的普通 GitHub Release
 - Tag：`snapshot-latest`
 - 文件名保持固定。
 - 上传同名新包前，先删除旧 asset。
