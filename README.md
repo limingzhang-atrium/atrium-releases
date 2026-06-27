@@ -38,6 +38,12 @@ The current public release is intended for private dogfood and evaluation use.
 
 当前公开发布版本仅用于个人 dogfood 和评估。
 
+## Trademark and Independence Notice / 商标与独立性声明
+
+Atrium is independent bridge software. Claude, Codex, Qoder, Cursor and other names and logos are trademarks of their respective companies, used here solely to identify the corresponding agents. Atrium has no affiliation, sponsorship, partnership, or endorsement relationship with these companies or their LLM providers. Cursor is a trademark of Anysphere Inc.
+
+Atrium 是独立的桥接软件。Claude、Codex、Qoder、Cursor 等名称与 logo 为各自公司的商标，此处仅用于标识对应 agent。Atrium 与上述公司及其 LLM provider 无隶属、合作、赞助或背书关系。Cursor is a trademark of Anysphere Inc.
+
 ## License / 许可
 
 Atrium is proprietary software. See [LICENSE.md](LICENSE.md) for usage terms.
