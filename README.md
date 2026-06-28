@@ -12,13 +12,13 @@ This repository only hosts public release materials and downloadable builds for 
 
 *One room, multiple agents — you direct every handoff. / 一个房间，多个 agent —— 每次交接都由你掌控。*
 <p align="center">
-  <img src="docs/images/case1-1-startMeeting.png" alt="Atrium meeting setup" width="70%">
+  <img src="docs/images/case1-1-startMeeting.png" alt="Atrium meeting setup" width="50%">
 </p>
 <p align="center">
-  <img src="docs/images/case1-3-claude-result.png" alt="Atrium Claude result" width="70%">
+  <img src="docs/images/case1-3-claude-result.png" alt="Atrium Claude result" width="50%">
 </p>
 <p align="center">
-  <img src="docs/images/case1-4-codex-result.png" alt="Atrium Codex result" width="70%">
+  <img src="docs/images/case1-4-codex-result.png" alt="Atrium Codex result" width="50%">
 </p>
 ## Already copy-pasting between AI coding agents? / 还在 AI 编程工具之间手动复制粘贴？
 
@@ -46,10 +46,10 @@ The current public release is an **early public evaluation release** — usable 
 
 *Select a reply and forward it to another agent — not copy-paste. / 选中回答，转发给另一个 agent —— 不是复制粘贴。*
 <p align="center">
-  <img src="docs/images/case2-1-forward2other.png" alt="Forwarding a reply to another agent" width="70%">
+  <img src="docs/images/case2-1-forward2other.png" alt="Forwarding a reply to another agent" width="50%">
 </p>
 <p align="center">
-  <img src="docs/images/case2-2-forward2.png" alt="Forward dispatch dialog" width="70%">
+  <img src="docs/images/case2-2-forward2.png" alt="Forward dispatch dialog" width="50%">
 </p>
 
 ### One provider is enough / 只有一个 provider 也够用
@@ -97,12 +97,12 @@ It is **not** meant to be an "AI IDE" or a general-purpose platform for all AI u
 *Every forward records where it came from. / 每次转发都记得它从哪来。*
 
 <p align="center">
-  <img src="docs/images/case2-2-forward3.png" alt="Provenance: where each forwarded message came from" width="70%">
+  <img src="docs/images/case2-2-forward3.png" alt="Provenance: where each forwarded message came from" width="50%">
 </p>
 
 *Optional: a deterministic runner orchestrates analyze / plan battles. / 可选：确定性 Runner 编排 analyze / plan 辩论。*
 <p align="center">
-  <img src="docs/images/case3-1-autoplan.png" alt="Auto workflow running an analyze/plan battle" width="70%">
+  <img src="docs/images/case3-1-autoplan.png" alt="Auto workflow running an analyze/plan battle" width="50%">
 </p>
 ## Requirements / 前置依赖
 
