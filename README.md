@@ -8,6 +8,18 @@ This repository only hosts public release materials and downloadable builds for 
 
 本仓库仅用于托管 Atrium 的公开发布材料和可下载构建包，不包含 Atrium 源代码。
 
+<p align="center">
+  <img src="docs/images/case1-1-startMeeting.png" alt="Atrium meeting setup" width="50%">
+</p>
+<p align="center">
+  <img src="docs/images/case1-3-claude-result.png" alt="Atrium Claude result" width="50%">
+</p>
+<p align="center">
+  <img src="docs/images/case1-4-codex-result.png" alt="Atrium Codex result" width="50%">
+</p>
+
+*One room, multiple agents — you direct every handoff. / 一个房间，多个 agent —— 每次交接都由你掌控。*
+
 ## Already copy-pasting between AI coding agents? / 还在 AI 编程工具之间手动复制粘贴？
 
 If you already work across several AI coding agents — asking one to analyze, another to change code, another to review — you probably spend a lot of time manually copying questions, answers, and context from one to another, and lose track of where each result came from.
@@ -31,6 +43,16 @@ Atrium **连接你已经在用的 agent** —— 它不是 IDE，不替代这些
 The current public release is an **early public evaluation release** — usable for real work, but still evolving and not a mature, finalized product.
 
 当前公开发布版本是**早期公开评估版**：可以用于真实工作，但仍在持续演进，并非成熟定型的正式版。
+
+<p align="center">
+  <img src="docs/images/case2-1-forward2other.png" alt="Forwarding a reply to another agent" width="50%">
+</p>
+<p align="center">
+  <img src="docs/images/case2-2-forward2.png" alt="Forward dispatch dialog" width="50%">
+</p>
+
+
+*Select a reply and forward it to another agent — not copy-paste. / 选中回答，转发给另一个 agent —— 不是复制粘贴。*
 
 ### One provider is enough / 只有一个 provider 也够用
 
@@ -73,6 +95,18 @@ It is **not** meant to be an "AI IDE" or a general-purpose platform for all AI u
 - **可选 Auto workflow** —— 不是 agent 自主 routing，而是由用户授权后、确定性 Runner 编排特定阶段的流程。
 - **Local desktop app** — runs locally on your own machine.
 - **本地桌面应用** —— 在你本机本地运行。
+
+<p align="center">
+  <img src="docs/images/case2-2-forward3.png" alt="Provenance: where each forwarded message came from" width="50%">
+</p>
+
+*Every forward records where it came from. / 每次转发都记得它从哪来。*
+
+<p align="center">
+  <img src="docs/images/case3-1-autoplan.png" alt="Auto workflow running an analyze/plan battle" width="50%">
+</p>
+
+*Optional: a deterministic runner orchestrates analyze / plan battles. / 可选：确定性 Runner 编排 analyze / plan 辩论。*
 
 ## Requirements / 前置依赖
 
@@ -121,6 +155,14 @@ See [Download Channels](docs/download-channels.md) for stable and snapshot packa
 GitHub's repository sidebar only shows the latest Release shortcut. Open the [Releases page](https://github.com/limingzhang-atrium/atrium-releases/releases) to view every version, installer assets, and release notes. The sidebar "Packages" area is GitHub Packages and is not used for Atrium installers.
 
 GitHub 仓库右侧栏只显示最新 Release 快捷入口。请打开 [Releases 页面](https://github.com/limingzhang-atrium/atrium-releases/releases) 查看每个版本、安装包 assets 和 release notes。右侧栏的 "Packages" 是 GitHub Packages，Atrium 安装包不放在那里。
+
+## Quick Start / 快速开始
+
+<!-- TODO(README): 等截图时按真实界面确认 meeting room / participant / forward / provider·model 的实际叫法，再定稿并删除本注释 -->
+
+1. Install and sign in to at least one supported agent (Claude or Codex) on your Mac. / 在 Mac 上安装并登录至少一个支持的 agent（Claude 或 Codex）。
+2. Open Atrium, create a meeting room, and add a participant — choose its provider and model. / 打开 Atrium，新建一个会议室，添加一个参会方 —— 选择它的 provider 和 model。
+3. Type `@<agent>` followed by your task to dispatch your first message. To bring one agent's reply to another, select the message and forward it. / 输入 `@<agent>` 加上你的任务，派发第一条消息；想把某个 agent 的回答带给另一个，选中该消息并转发即可。
 
 ## Trademark and Independence Notice / 商标与独立性声明
 
