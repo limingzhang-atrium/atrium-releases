@@ -125,8 +125,8 @@ Atrium 本身可免费用于个人使用和评估；底层 agent 不属于 Atriu
 - **仅支持 macOS Apple Silicon** —— 当前公开构建只能在 Apple Silicon（M 系列）Mac 上运行，不支持 Intel Mac。
 - **Not signed / not notarized** — on first launch macOS may warn that the app is from an unidentified developer; you may need to allow it manually (for example via System Settings → Privacy & Security → Open Anyway).
 - **未签名 / 未公证** —— 首次打开时 macOS 可能提示来自身份不明的开发者，你可能需要手动允许（例如在 系统设置 → 隐私与安全性 → 仍要打开）。
-- A mobile app is **not started yet**.
-- 手机端**尚未启动**。
+- A mobile companion app is **in development** (see below); it is **not released yet and has no fixed date**.
+- 手机端 App **正在开发中**（见下文），但**尚未发布、暂无确定日期**。
 
 ## Download / 下载
 
@@ -159,6 +159,30 @@ GitHub 仓库右侧栏只显示最新 Release 快捷入口。请打开 [Releases
 1. Install and sign in to at least one supported agent (Claude or Codex) on your Mac. / 在 Mac 上安装并登录至少一个支持的 agent（Claude 或 Codex）。
 2. Open Atrium, create a meeting room, and add a participant — choose its provider and model. / 打开 Atrium，新建一个会议室，添加一个参会方 —— 选择它的 provider 和 model。
 3. Type `@<agent>` followed by your task to dispatch your first message. To bring one agent's reply to another, select the message and forward it. / 输入 `@<agent>` 加上你的任务，派发第一条消息；想把某个 agent 的回答带给另一个，选中该消息并转发即可。
+
+## Mobile app — in development / 手机端 —— 开发中
+
+A companion mobile app is in development, so your control plane no longer has to stay chained to your desk. It is **not released yet and has no fixed date** — but here is what we are building toward. Imagine kicking off the work and then stepping away from the keyboard:
+
+手机端 App 正在开发中，让你的控制台不必再被绑在工位上。它**尚未发布、暂无确定日期** —— 但这是我们正在努力的方向。想象你派发完任务，就可以离开键盘：
+
+- Cast a line by the lake, glance at your phone to read what Claude and Codex came back with, and forward the better answer onward — no laptop needed. 
+- 在湖边甩下鱼竿，瞄一眼手机看 Claude 和 Codex 各自回了什么，把更好的那条直接转发出去 —— 不用携带电脑。
+- While waiting for your coffee, skim an agent's plan, approve the next handoff, and let the work keep moving as you walk back to your seat. 
+- 等咖啡的间隙，扫一眼某个 agent 的方案，确认下一步交接，工作就在你走回座位的路上继续推进。
+- Out for a walk or on the commute, check in on a running Auto battle and step in only when it genuinely needs your judgment. 
+- 散步或通勤途中，看一眼正在跑的 Auto 辩论，只在真正需要你判断时才出手。
+
+> These are aspirational scenarios for an unreleased app, not promises of current functionality. / 以上是对尚未发布 App 的设想场景，并非对当前已有功能的承诺。
+
+## Feedback & contributing / 反馈与参与
+
+Atrium is an early public release, shaped by the people who actually use it.
+
+Atrium 还是早期公开版本，靠真实使用它的人来打磨。
+
+- **Have a feature idea or hit a bug?** Open an [issue](https://github.com/limingzhang-atrium/atrium-releases/issues) — requests and feedback are very welcome. / **有功能想法或遇到 bug？** 欢迎提 [issue](https://github.com/limingzhang-atrium/atrium-releases/issues)，非常欢迎各类需求和反馈。
+- **Find Atrium useful?** A ⭐ on the repository helps more people discover it. / **觉得 Atrium 有用？** 给仓库点个 ⭐，能帮更多人发现它。
 
 ## Trademark and Independence Notice / 商标与独立性声明
 
