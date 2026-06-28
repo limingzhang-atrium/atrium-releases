@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 从 dist/<tag> 发布 GitHub Release assets。
-# 这个脚本只处理公开 atrium-releases 仓库中的 staging 产物，不构建私有源码仓库。
+# 这个脚本只发布当前仓库中已准备好的 Release 资产，不生成安装包。
 set -euo pipefail
 
 # resolve_root 负责把脚本位置解析为公开发布仓库根目录，避免从不同 cwd 调用时路径漂移。
@@ -28,6 +28,7 @@ TAG="snapshot-latest"
 GITHUB_REPO="limingzhang-atrium/atrium-releases"
 DIST_ROOT="$ROOT_DIR/dist"
 DRY_RUN=0
+CHANGELOG_FILE="$ROOT_DIR/CHANGELOG.md"
 
 # gh_with_retry 对 GitHub API 偶发 EOF/SSL 中断做少量重试；非网络错误仍会按原退出码失败。
 gh_with_retry() {
@@ -44,6 +45,37 @@ gh_with_retry() {
     sleep "$attempt"
     attempt=$((attempt + 1))
   done
+}
+
+# extract_changelog_section 从 CHANGELOG.md 中抽取与 tag 匹配的二级标题段落。
+# 支持 `## v0.11.0`、`## 0.11.0`、`## [v0.11.0] - 2026-06-28` 等常见写法；找不到时不阻断发布。
+extract_changelog_section() {
+  local tag="$1"
+  local version="${tag#v}"
+  [[ -f "$CHANGELOG_FILE" ]] || return 1
+  awk -v tag="$tag" -v version="$version" '
+    function trim(value) {
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "", value)
+      return value
+    }
+    function heading_matches(line) {
+      line = trim(line)
+      sub(/^##[[:space:]]+/, "", line)
+      return line == tag || line == version ||
+        line ~ "^\\[" tag "\\]" || line ~ "^\\[" version "\\]" ||
+        line ~ "^" tag "([[:space:]]|-|$)" || line ~ "^" version "([[:space:]]|-|$)"
+    }
+    /^##[[:space:]]+/ {
+      if (in_section) exit
+      if (heading_matches($0)) {
+        in_section = 1
+        found = 1
+        next
+      }
+    }
+    in_section { print }
+    END { if (!found) exit 1 }
+  ' "$CHANGELOG_FILE"
 }
 
 # 解析发布参数；真正要发布哪个版本由 dist/<tag> 决定。
@@ -100,6 +132,8 @@ MANIFEST_FILE="$STAGE_DIR/Atrium-${TAG}-manifest.json"
 RELEASE_TITLE="$TAG"
 CREATE_FLAGS=()
 EDIT_FLAGS=()
+PUBLISH_NOTES_FILE="$NOTES_FILE"
+TMP_NOTES_FILE=""
 
 if [[ "$TAG" == "snapshot-latest" ]]; then
   CREATE_FLAGS=(--latest)
@@ -142,6 +176,27 @@ echo "[publish-github] stage=$STAGE_DIR"
 echo "[publish-github] assets:"
 printf '  %s\n' "${ASSETS[@]}"
 
+# GitHub Release body 以已准备好的 release notes 为主，再附加 CHANGELOG.md 中对应版本段落；
+# 这样仓库首页保留完整 changelog，Release 页面也能直接看到该版本变更。
+if CHANGELOG_SECTION="$(extract_changelog_section "$TAG")" && [[ -n "${CHANGELOG_SECTION//[[:space:]]/}" ]]; then
+  TMP_NOTES_FILE="$(mktemp)"
+  cat "$NOTES_FILE" > "$TMP_NOTES_FILE"
+  {
+    printf '\n### Changelog\n\n'
+    printf '%s\n' "$CHANGELOG_SECTION"
+  } >> "$TMP_NOTES_FILE"
+  PUBLISH_NOTES_FILE="$TMP_NOTES_FILE"
+  echo "[publish-github] appended changelog section for $TAG"
+else
+  echo "[publish-github] no matching changelog section for $TAG; using prepared release notes only"
+fi
+
+cleanup() {
+  [[ -n "$TMP_NOTES_FILE" ]] && rm -f "$TMP_NOTES_FILE"
+  return 0
+}
+trap cleanup EXIT
+
 if [[ "$DRY_RUN" == "1" ]]; then
   echo "[publish-github] dry run only; no GitHub changes made"
   exit 0
@@ -157,7 +212,7 @@ GH_MISSING
   exit 1
 fi
 
-# GitHub Release 不支持同名 asset 覆盖，先删除旧 asset，再上传本次 staging 文件。
+# GitHub Release 不支持同名 asset 覆盖，先删除旧 asset，再上传本次发布文件。
 if gh_with_retry gh release view "$TAG" --repo "$GITHUB_REPO" >/dev/null 2>&1; then
   echo "[publish-github] release exists, replacing assets on $TAG ..."
 else
@@ -166,7 +221,7 @@ else
   if ! gh_with_retry gh release create "$TAG" \
     --repo "$GITHUB_REPO" \
     --title "$RELEASE_TITLE" \
-    --notes-file "$NOTES_FILE" \
+    --notes-file "$PUBLISH_NOTES_FILE" \
     "${CREATE_FLAGS[@]}" 2>"$CREATE_ERROR"; then
     if grep -qiE 'tag_name already exists|already exists' "$CREATE_ERROR"; then
       echo "[publish-github] release already exists remotely, continuing with asset replacement ..."
@@ -185,7 +240,7 @@ gh_with_retry gh release upload "$TAG" "${ASSETS[@]}" --repo "$GITHUB_REPO" --cl
 gh_with_retry gh release edit "$TAG" \
   --repo "$GITHUB_REPO" \
   --title "$RELEASE_TITLE" \
-  --notes-file "$NOTES_FILE" \
+  --notes-file "$PUBLISH_NOTES_FILE" \
   "${EDIT_FLAGS[@]}"
 
 echo "[publish-github] done:"

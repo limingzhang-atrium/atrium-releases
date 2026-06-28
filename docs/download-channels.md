@@ -8,9 +8,9 @@ GitHub Release assets do not provide a real directory hierarchy, so Atrium uses 
 
 GitHub Release assets 没有真正的目录层级，因此 Atrium 使用 release tag、发布通道和包文件名来组织下载。
 
-GitHub automatically adds `Source code (zip)` and `Source code (tar.gz)` to every release. These archives contain only this public `atrium-releases` repository, not the private Atrium source code. Users should download the `.dmg` or `.app.zip` installer assets.
+GitHub automatically adds `Source code (zip)` and `Source code (tar.gz)` to every release. These archives are not Atrium installers. Users should download the `.dmg` or `.app.zip` installer assets.
 
-GitHub 会自动为每个 Release 添加 `Source code (zip)` 和 `Source code (tar.gz)`。这些压缩包只包含本公开 `atrium-releases` 仓库，不包含 Atrium 私有源代码。用户应下载 `.dmg` 或 `.app.zip` 安装包。
+GitHub 会自动为每个 Release 添加 `Source code (zip)` 和 `Source code (tar.gz)`。这些压缩包不是 Atrium 安装包。用户应下载 `.dmg` 或 `.app.zip` 安装包。
 
 ## Stable Releases / 稳定版
 
@@ -21,12 +21,16 @@ Stable releases are for normal users.
 - Release type: normal GitHub Release
 - Tag format: `vMAJOR.MINOR.PATCH`, for example `v0.1.0`
 - Latest stable URL: `https://github.com/limingzhang-atrium/atrium-releases/releases/latest`
+- All version history: `https://github.com/limingzhang-atrium/atrium-releases/releases`
 - Package files are permanent and should not be replaced after publishing.
+- The repository sidebar "Packages" section is GitHub Packages, not GitHub Release assets. Atrium installers are attached to Releases only.
 
 - 发布类型：普通 GitHub Release
 - Tag 格式：`vMAJOR.MINOR.PATCH`，例如 `v0.1.0`
 - 最新稳定版地址：`https://github.com/limingzhang-atrium/atrium-releases/releases/latest`
+- 全部版本历史：`https://github.com/limingzhang-atrium/atrium-releases/releases`
 - 包文件发布后应保持稳定，不应覆盖替换。
+- 仓库右侧栏 "Packages" 是 GitHub Packages，不是 GitHub Release assets。Atrium 安装包只挂在 Releases 里。
 
 Recommended asset names:
 
@@ -38,6 +42,16 @@ Atrium-v0.1.0-macos-arm64.app.zip
 Atrium-v0.1.0-macos-arm64.dmg.sha256
 Atrium-v0.1.0-macos-arm64.app.zip.sha256
 ```
+
+### Stable release assets / 稳定版发布资产
+
+Stable releases should expose only user-facing installer assets and checksum files on the GitHub Release page. Maintainer-only build and publishing steps are intentionally not documented in this public repository.
+
+稳定版 Release 页面只应展示面向用户的安装包和校验文件。维护者内部的构建与发布步骤不在本公开仓库中记录。
+
+Release notes should summarize user-facing changes, security and privacy notes, known limitations, and checksum information.
+
+Release notes 应说明面向用户的变化、安全与隐私说明、已知限制和校验信息。
 
 ## Snapshot Releases / Snapshot 测试版
 

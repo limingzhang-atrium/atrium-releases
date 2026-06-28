@@ -16,9 +16,9 @@ Download the latest build from:
 
 https://github.com/limingzhang-atrium/atrium-releases/releases/latest
 
-Release packages are distributed as GitHub Release assets. The automatically generated `Source code (zip)` and `Source code (tar.gz)` files only contain the public materials in this repository, not the private Atrium source code.
+Release packages are distributed as GitHub Release assets. The automatically generated `Source code (zip)` and `Source code (tar.gz)` files are not Atrium installers.
 
-发布包通过 GitHub Release assets 分发。GitHub 自动生成的 `Source code (zip)` 和 `Source code (tar.gz)` 只包含本仓库中的公开材料，不包含 Atrium 私有源代码。
+发布包通过 GitHub Release assets 分发。GitHub 自动生成的 `Source code (zip)` 和 `Source code (tar.gz)` 不是 Atrium 安装包。
 
 Snapshot builds are published as prereleases and are intended for quick testing before a stable release.
 
@@ -28,13 +28,17 @@ See [Download Channels](docs/download-channels.md) for stable and snapshot packa
 
 稳定版和 snapshot 包的命名规则见 [下载通道说明](docs/download-channels.md)。
 
+GitHub's repository sidebar only shows the latest Release shortcut. Open the [Releases page](https://github.com/limingzhang-atrium/atrium-releases/releases) to view every version, installer assets, and release notes. The sidebar "Packages" area is GitHub Packages and is not used for Atrium installers.
+
+GitHub 仓库右侧栏只显示最新 Release 快捷入口。请打开 [Releases 页面](https://github.com/limingzhang-atrium/atrium-releases/releases) 查看每个版本、安装包 assets 和 release notes。右侧栏的 "Packages" 是 GitHub Packages，Atrium 安装包不放在那里。
+
 ## What is Atrium? / Atrium 是什么？
 
 Atrium is a multi-agent dispatch bridge and control plane for manually forwarding work between strong AI coding agents.
 
 Atrium 是一个多 LLM / 多 AI 编码 Agent 的人工转发控制台，用于把用户在多个强 Agent 之间手动复制、转发、对照的工作流结构化。
 
-The current public release is intended for private dogfood and evaluation use.
+The current public release is intended for limited dogfood and evaluation use.
 
 当前公开发布版本仅用于个人 dogfood 和评估。
 
