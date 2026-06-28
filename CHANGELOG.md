@@ -9,6 +9,13 @@ Atrium 的重要公开发布变更会记录在此文件中。
 - No unreleased public changes yet.
 - 暂无未发布的公开变更。
 
+## v0.12.0 - 2026-06-28
+
+- Added a confirmation prompt before ending a meeting, clarifying that ended meetings cannot continue chatting.
+- Expanded the public README with clearer product positioning, target users, requirements, platform limits, and usage boundaries.
+- 结束会议前新增二次确认，并明确会议结束后无法继续对话。
+- 扩充公开 README，补充产品定位、适用人群、前置依赖、平台限制和使用边界。
+
 ## v0.11.0 - 2026-06-28
 
 - Added the first public macOS release package channel for Atrium.

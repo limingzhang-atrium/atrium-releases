@@ -8,6 +8,96 @@ This repository only hosts public release materials and downloadable builds for 
 
 本仓库仅用于托管 Atrium 的公开发布材料和可下载构建包，不包含 Atrium 源代码。
 
+## Already copy-pasting between AI coding agents? / 还在 AI 编程工具之间手动复制粘贴？
+
+If you already work across several AI coding agents — asking one to analyze, another to change code, another to review — you probably spend a lot of time manually copying questions, answers, and context from one to another, and lose track of where each result came from.
+
+如果你已经同时在用多个 AI 编程 agent —— 让一个分析、另一个改代码、再让一个复核 —— 你大概率在手动把问题、回答和上下文从一个 agent 复制到另一个，而且很难再说清每个结论是从哪来的。
+
+Atrium turns that manual relay into a deliberate, trackable workflow: you dispatch each message to the agent you choose, stay in control of every step, and the source relationships of every forward are recorded for you.
+
+Atrium 把这套人工传话变成有意识、可追踪的工作流：你把每条消息明确派发给你选定的 agent，自己掌控每一步，而每次转发的来源关系都会被自动记录下来。
+
+## What is Atrium? / Atrium 是什么？
+
+Atrium is a local desktop control plane for forwarding work between strong AI coding agents. You decide what gets sent where; Atrium organizes the dispatch, the context, and the provenance.
+
+Atrium 是一个本地桌面端的多 AI agent 转发控制台，用于在多个强 AI 编码 agent 之间转发工作。发什么、发给谁由你决定，Atrium 负责组织派发、上下文和来源记录。
+
+Atrium **connects the agents you already use** — it is not an IDE, it does not replace those agents, and it does not let agents autonomously decide what to do next. You drive every dispatch.
+
+Atrium **连接你已经在用的 agent** —— 它不是 IDE，不替代这些 agent，也不会让 agent 自主决定下一步。每次派发都由你驱动。
+
+The current public release is an **early public evaluation release** — usable for real work, but still evolving and not a mature, finalized product.
+
+当前公开发布版本是**早期公开评估版**：可以用于真实工作，但仍在持续演进，并非成熟定型的正式版。
+
+### One provider is enough / 只有一个 provider 也够用
+
+You don't need several different vendors to get value. Even with only one provider (say only Claude, or only Codex), Atrium lets you open multiple independent sessions in the same meeting room and have them talk to each other — for example a stronger model and a faster model (e.g. Opus and Sonnet) reviewing, challenging, and refining each other's answers, with you directing each handoff.
+
+你不需要凑齐好几家厂商才能用上 Atrium。即使只有一个 provider（比如只有 Claude，或只有 Codex），Atrium 也能让你在同一个会议室里新建多个互相独立的 session，让它们彼此对话 —— 例如让一个更强的模型和一个更快的模型（比如 Opus 和 Sonnet）互相复核、质疑、打磨对方的回答，每一次交接都由你来掌控。
+
+## Who is it for? / 适合谁？
+
+Atrium is built for developers who:
+
+Atrium 面向这样的开发者：
+
+- already work across multiple AI coding agents at the same time
+- 已经在同时使用多个 AI 编程 agent
+- want a second opinion, plan review, or challenge/debate across different models
+- 需要多模型的第二意见、方案评审或互相质疑/复核辩论
+- frequently forward one agent's answer to another to keep judging or implementing
+- 经常把一个 agent 的回答转发给另一个，继续判断或实现
+- need cross-agent context to be carried deliberately, with clear provenance
+- 需要跨 agent 的上下文被有意识地携带，并保留清晰来源
+
+It is **not** meant to be an "AI IDE" or a general-purpose platform for all AI users.
+
+它**不是**"AI IDE"，也不是面向所有 AI 用户的通用平台。
+
+## Key features / 核心特性
+
+- **Manual dispatch** — explicitly send work to a chosen agent via `@-mention` or message selection.
+- **手动派发** —— 通过 `@-mention` 或选择消息，明确把任务发给指定 agent。
+- **Connect the agents you already use** — bridge Claude, Codex, Qoder, and Cursor in one console (support and maturity differ per agent).
+- **连接你已在用的 agent** —— 在一个控制台里桥接 Claude、Codex、Qoder、Cursor（各 agent 的支持程度和成熟度不同）。
+- **Flexible provider & model setup** — configure which LLM providers and which specific model each participant uses, so you can mix and match to fit your task.
+- **灵活配置 provider 与 model** —— 按需配置使用哪些 LLM provider、每个参会方各自用哪个具体模型，自由搭配以匹配你的任务。
+- **Provenance tracking** — every forward records where a message came from, where it went, and whether it was edited.
+- **来源追踪** —— 每次转发都记录消息从哪来、转给了谁、是否被编辑过。
+- **Prompt isolation** — source metadata is never silently injected into an agent's prompt; the agent only receives the text you finalized.
+- **Prompt 隔离** —— 来源信息绝不会被偷偷塞进 agent 的 prompt，agent 只收到你最终编辑确认的正文。
+- **Optional Auto workflow** — not autonomous agent routing; a user-authorized, deterministic runner orchestrates specific staged flows.
+- **可选 Auto workflow** —— 不是 agent 自主 routing，而是由用户授权后、确定性 Runner 编排特定阶段的流程。
+- **Local desktop app** — runs locally on your own machine.
+- **本地桌面应用** —— 在你本机本地运行。
+
+## Requirements / 前置依赖
+
+Atrium is a bridge — it **does not include any LLM of its own**. Before it is useful you need:
+
+Atrium 是一个桥接工具 —— 它**自身不内置任何 LLM**。要让它发挥作用，你需要：
+
+- at least one supported agent (Claude / Codex / Qoder / Cursor) already installed and signed in on your machine
+- 至少已在本机安装并登录一个支持的 agent（Claude / Codex / Qoder / Cursor）
+- your own subscription, API access, or model usage for those agents — **Atrium does not provide model access, and any subscription / API / model usage costs are your own**
+- 你自己的 agent 订阅、API 访问或模型用量 —— **Atrium 不提供模型访问，相关订阅 / API / 模型费用由你自行承担**
+
+Atrium itself is free for personal and evaluation use; the underlying agents are not part of Atrium and are billed by their respective providers.
+
+Atrium 本身可免费用于个人使用和评估；底层 agent 不属于 Atrium，其费用由各自的 provider 计费。
+
+## Platform & limitations / 平台与限制
+
+- **macOS, Apple Silicon only** — the current public build runs on Apple Silicon (M-series) Macs. Intel Macs are not supported.
+- **仅支持 macOS Apple Silicon** —— 当前公开构建只能在 Apple Silicon（M 系列）Mac 上运行，不支持 Intel Mac。
+- **Not signed / not notarized** — on first launch macOS may warn that the app is from an unidentified developer; you may need to allow it manually (for example via System Settings → Privacy & Security → Open Anyway).
+- **未签名 / 未公证** —— 首次打开时 macOS 可能提示来自身份不明的开发者，你可能需要手动允许（例如在 系统设置 → 隐私与安全性 → 仍要打开）。
+- A mobile app is **not started yet**.
+- 手机端**尚未启动**。
+
 ## Download / 下载
 
 Download the latest build from:
@@ -32,16 +122,6 @@ GitHub's repository sidebar only shows the latest Release shortcut. Open the [Re
 
 GitHub 仓库右侧栏只显示最新 Release 快捷入口。请打开 [Releases 页面](https://github.com/limingzhang-atrium/atrium-releases/releases) 查看每个版本、安装包 assets 和 release notes。右侧栏的 "Packages" 是 GitHub Packages，Atrium 安装包不放在那里。
 
-## What is Atrium? / Atrium 是什么？
-
-Atrium is a multi-agent dispatch bridge and control plane for manually forwarding work between strong AI coding agents.
-
-Atrium 是一个多 LLM / 多 AI 编码 Agent 的人工转发控制台，用于把用户在多个强 Agent 之间手动复制、转发、对照的工作流结构化。
-
-The current public release is intended for limited dogfood and evaluation use.
-
-当前公开发布版本仅用于个人 dogfood 和评估。
-
 ## Trademark and Independence Notice / 商标与独立性声明
 
 Atrium is independent bridge software. Claude, Codex, Qoder, Cursor and other names and logos are trademarks of their respective companies, used here solely to identify the corresponding agents. Atrium has no affiliation, sponsorship, partnership, or endorsement relationship with these companies or their LLM providers. Cursor is a trademark of Anysphere Inc.
@@ -50,11 +130,9 @@ Atrium 是独立的桥接软件。Claude、Codex、Qoder、Cursor 等名称与 l
 
 ## License / 许可
 
-Atrium is proprietary software. See [LICENSE.md](LICENSE.md) for usage terms.
+Atrium is proprietary software and is **free for personal use, personal evaluation, learning, research, and internal dogfood use**. Commercial resale, commercial redistribution, reverse engineering, and unlawful use are not permitted. See [LICENSE.md](LICENSE.md) for full terms.
 
-Atrium is free for personal use, personal evaluation, learning, research, and internal dogfood use. Commercial resale, commercial redistribution, reverse engineering, and unlawful use are not permitted. See [LICENSE.md](LICENSE.md) for full terms.
-
-Atrium 是专有软件，可免费用于个人使用、个人评估、学习、研究和内部 dogfood 试用。禁止商业转售、商业化再分发、反向工程和违法使用。完整条款见 [LICENSE.md](LICENSE.md)。
+Atrium 是专有软件，**可免费用于个人使用、个人评估、学习、研究和内部 dogfood 试用**。禁止商业转售、商业化再分发、反向工程和违法使用。完整条款见 [LICENSE.md](LICENSE.md)。
 
 ## Changelog / 更新日志
 
