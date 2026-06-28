@@ -20,6 +20,7 @@ This repository only hosts public release materials and downloadable builds for 
 <p align="center">
   <img src="docs/images/case1-4-codex-result.png" alt="Atrium Codex result" width="50%">
 </p>
+
 ## Already copy-pasting between AI coding agents? / 还在 AI 编程工具之间手动复制粘贴？
 
 If you already work across several AI coding agents — asking one to analyze, another to change code, another to review — you probably spend a lot of time manually copying questions, answers, and context from one to another, and lose track of where each result came from.
@@ -104,6 +105,7 @@ It is **not** meant to be an "AI IDE" or a general-purpose platform for all AI u
 <p align="center">
   <img src="docs/images/case3-1-autoplan.png" alt="Auto workflow running an analyze/plan battle" width="50%">
 </p>
+
 ## Requirements / 前置依赖
 
 Atrium is a bridge — it **does not include any LLM of its own**. Before it is useful you need:
