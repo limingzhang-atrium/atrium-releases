@@ -82,6 +82,8 @@ It is **not** meant to be an "AI IDE" or a general-purpose platform for all AI u
 
 - **Manual dispatch** — explicitly send work to a chosen agent via `@-mention` or message selection.
 - **手动派发** —— 通过 `@-mention` 或选择消息，明确把任务发给指定 agent。
+- **Fast input shortcuts** — use `@` to choose a role, `@filename` to attach files, and `/` to choose a skill.
+- **快捷输入** —— 使用 `@` 选择 Role，使用 `@filename` 选择文件，使用 `/` 选择 skill。
 - **Connect the agents you already use** — bridge Claude, Codex, Qoder, and Cursor in one console (support and maturity differ per agent).
 - **连接你已在用的 agent** —— 在一个控制台里桥接 Claude、Codex、Qoder、Cursor（各 agent 的支持程度和成熟度不同）。
 - **Flexible provider & model setup** — configure which LLM providers and which specific model each participant uses, so you can mix and match to fit your task.
@@ -92,6 +94,8 @@ It is **not** meant to be an "AI IDE" or a general-purpose platform for all AI u
 - **Prompt 隔离** —— 来源信息绝不会被偷偷塞进 agent 的 prompt，agent 只收到你最终编辑确认的正文。
 - **Optional Auto workflow** — not autonomous agent routing; a user-authorized, deterministic runner orchestrates specific staged flows.
 - **可选 Auto workflow** —— 不是 agent 自主 routing，而是由用户授权后、确定性 Runner 编排特定阶段的流程。
+- **Local skill support** — Atrium can use skills installed in your local agent environment; Auto analyze/plan requires the Atrium skill pack.
+- **本地 skill 支持** —— Atrium 可以使用你本地 agent 环境中安装的 skill；Auto analyze / plan 需要先安装 Atrium skill 包。
 - **Local desktop app** — runs locally on your own machine.
 - **本地桌面应用** —— 在你本机本地运行。
 
@@ -116,6 +120,8 @@ Atrium 是一个桥接工具 —— 它**自身不内置任何 LLM**。要让它
 - 至少已在本机安装并登录一个支持的 agent（Claude / Codex / Qoder / Cursor）
 - your own subscription, API access, or model usage for those agents — **Atrium does not provide model access, and any subscription / API / model usage costs are your own**
 - 你自己的 agent 订阅、API 访问或模型用量 —— **Atrium 不提供模型访问，相关订阅 / API / 模型费用由你自行承担**
+- to use Auto analyze/plan, install the Atrium skill pack first: https://github.com/limingzhang-atrium/atrium-skill
+- 如需使用 Auto analyze / plan，请先安装 Atrium skill 包：https://github.com/limingzhang-atrium/atrium-skill
 
 Atrium itself is free for personal and evaluation use; the underlying agents are not part of Atrium and are billed by their respective providers.
 
@@ -160,7 +166,7 @@ GitHub 仓库右侧栏只显示最新 Release 快捷入口。请打开 [Releases
 
 1. Install and sign in to at least one supported agent (Claude or Codex) on your Mac. / 在 Mac 上安装并登录至少一个支持的 agent（Claude 或 Codex）。
 2. Open Atrium, create a meeting room, and add a participant — choose its provider and model. / 打开 Atrium，新建一个会议室，添加一个参会方 —— 选择它的 provider 和 model。
-3. Type `@<agent>` followed by your task to dispatch your first message. To bring one agent's reply to another, select the message and forward it. / 输入 `@<agent>` 加上你的任务，派发第一条消息；想把某个 agent 的回答带给另一个，选中该消息并转发即可。
+3. Type `@<role>` followed by your task to dispatch your first message. Use `@filename` to attach a file, or `/` to choose a local skill. To bring one agent's reply to another, select the message and forward it. / 输入 `@<role>` 加上你的任务，派发第一条消息；使用 `@filename` 选择文件，或使用 `/` 选择本地 skill；想把某个 agent 的回答带给另一个，选中该消息并转发即可。
 
 ## Mobile app — in development / 手机端 —— 开发中
 
