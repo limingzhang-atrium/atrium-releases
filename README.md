@@ -8,7 +8,18 @@ This repository only hosts public release materials and downloadable builds for 
 
 本仓库仅用于托管 Atrium 的公开发布材料和可下载构建包，不包含 Atrium 源代码。
 
+<p align="center">
+  <img src="docs/images/roundtable.png" alt="Humans and AI at the same table — Atrium connects the agents you already use" width="88%">
+</p>
 
+<h3 align="center">Two agents are better than one.<br/>一个好汉三个帮</h3>
+
+<p align="center">
+  <b>Atrium connects the agents you already use — you decide what gets passed to whom.</b><br/>
+  人与 AI，同桌协作 —— Atrium 连接你已在用的 agent，由你决定把哪条转给谁。
+</p>
+
+---
 
 *One room, multiple agents — you direct every handoff. / 一个房间，多个 agent —— 每次交接都由你掌控。*
 <p align="center">
@@ -161,8 +172,6 @@ GitHub's repository sidebar only shows the latest Release shortcut. Open the [Re
 GitHub 仓库右侧栏只显示最新 Release 快捷入口。请打开 [Releases 页面](https://github.com/limingzhang-atrium/atrium-releases/releases) 查看每个版本、安装包 assets 和 release notes。右侧栏的 "Packages" 是 GitHub Packages，Atrium 安装包不放在那里。
 
 ## Quick Start / 快速开始
-
-<!-- TODO(README): 等截图时按真实界面确认 meeting room / participant / forward / provider·model 的实际叫法，再定稿并删除本注释 -->
 
 1. Install and sign in to at least one supported agent (Claude or Codex) on your Mac. / 在 Mac 上安装并登录至少一个支持的 agent（Claude 或 Codex）。
 2. Open Atrium, create a meeting room, and add a participant — choose its provider and model. / 打开 Atrium，新建一个会议室，添加一个参会方 —— 选择它的 provider 和 model。
