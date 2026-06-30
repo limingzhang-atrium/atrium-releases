@@ -9,6 +9,17 @@ Atrium 的重要公开发布变更会记录在此文件中。
 - No unreleased public changes yet.
 - 暂无未发布的公开变更。
 
+## v0.13.0 - 2026-06-30
+
+- Improved `@` completion in the chat composer so roles and workspace files are discoverable in one menu.
+- Made role suggestions more compact, so file suggestions appear sooner without extra scrolling.
+- Improved workspace file discovery when ignored, missing, or broken linked files are encountered.
+- Updated the desktop app release version to `0.13.0`.
+- 优化聊天输入框的 `@` 补全，在同一个菜单中展示角色和工作区文件入口。
+- 压缩角色候选行高，让文件候选更早出现，减少滚动。
+- 改进工作区文件发现逻辑，遇到缺失或失效链接时仍尽量展示已找到的文件。
+- 将桌面 app release 版本更新为 `0.13.0`。
+
 ## v0.12.0 - 2026-06-28
 
 - Added a confirmation prompt before ending a meeting, clarifying that ended meetings cannot continue chatting.
