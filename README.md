@@ -171,6 +171,51 @@ GitHub's repository sidebar only shows the latest Release shortcut. Open the [Re
 
 GitHub 仓库右侧栏只显示最新 Release 快捷入口。请打开 [Releases 页面](https://github.com/limingzhang-atrium/atrium-releases/releases) 查看每个版本、安装包 assets 和 release notes。右侧栏的 "Packages" 是 GitHub Packages，Atrium 安装包不放在那里。
 
+## macOS installation note / macOS 安装提示
+
+Atrium is currently not signed or notarized. If macOS says `Atrium.app` cannot be opened, is from an unidentified developer, or is damaged, move it to `/Applications` first, then run:
+
+Atrium 当前未签名、未公证。如果 macOS 提示 `Atrium.app` 无法打开、来自身份不明的开发者，或提示应用已损坏，请先把它移动到 `/Applications`，然后执行：
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Atrium.app
+```
+
+If permission is denied, run:
+
+如果提示权限不足，执行：
+
+```bash
+sudo xattr -dr com.apple.quarantine /Applications/Atrium.app
+```
+
+Then open Atrium again.
+
+然后重新打开 Atrium。
+
+### `xattr -dr com.apple.quarantine` vs `xattr -cr`
+
+- `xattr -dr com.apple.quarantine /Applications/Atrium.app` recursively deletes only the macOS download quarantine attribute. This is the smaller and recommended fix.
+- `xattr -dr com.apple.quarantine /Applications/Atrium.app` 只递归删除 macOS 下载隔离标记，影响范围更小，推荐优先使用。
+- `xattr -cr /Applications/Atrium.app` recursively clears all extended attributes, not only quarantine. Many open-source projects document it because it is short and usually also removes quarantine, but it is broader than necessary and may fail on unrelated protected attributes.
+- `xattr -cr /Applications/Atrium.app` 会递归清空所有扩展属性，不只删除 quarantine。很多开源项目会这样写，因为命令短、通常也能顺带清掉 quarantine，但它的影响范围更大，也可能因为无关的受保护属性而失败。
+
+In theory, `xattr -cr /Applications/Atrium.app` should also remove `com.apple.quarantine`. If it does not fix launch, common causes are a wrong app path, insufficient permissions, the app still being opened from a disk image or downloads folder, or a separate macOS signing / notarization / app bundle integrity check.
+
+理论上，`xattr -cr /Applications/Atrium.app` 也应该删除 `com.apple.quarantine`。如果执行后仍然无法打开，常见原因通常不是 `-c` 本身无效，而是应用路径不对、权限不足、仍在从磁盘镜像或下载目录打开，或 macOS 因签名、公证、应用包完整性等其他原因继续拦截。
+
+To check whether the quarantine attribute is still present:
+
+可以用下面的命令检查 quarantine 标记是否仍然存在：
+
+```bash
+xattr -lr /Applications/Atrium.app | grep com.apple.quarantine
+```
+
+No output means the quarantine attribute has already been removed.
+
+如果没有输出，说明 quarantine 标记已经清理完成。
+
 ## Quick Start / 快速开始
 
 1. Install and sign in to at least one supported agent (Claude or Codex) on your Mac. / 在 Mac 上安装并登录至少一个支持的 agent（Claude 或 Codex）。
