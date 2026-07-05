@@ -6,8 +6,12 @@ Atrium 的重要公开发布变更会记录在此文件中。
 
 ## Unreleased / 未发布
 
-- No unreleased public changes yet.
-- 暂无未发布的公开变更。
+- Added context window usage indicators for Claude and Codex participants, with compact usage summaries and detail popovers.
+- Improved Claude `/compact` handling so successful compaction can update context usage even when no text reply is produced.
+- Improved the participant panel layout so context usage remains readable when an agent is offline and recovery actions are shown.
+- 新增 Claude 和 Codex 参与者的上下文窗口使用量展示，包含紧凑摘要和明细弹窗。
+- 改进 Claude `/compact` 处理：即使压缩成功后没有文本回复，也能更新上下文使用量。
+- 优化参与者面板布局，agent 离线并展示恢复操作时，上下文使用量仍能正常阅读。
 
 ## v0.13.0 - 2026-06-30
 
