@@ -9,6 +9,23 @@ Atrium 的重要公开发布变更会记录在此文件中。
 - No unreleased public changes yet.
 - 暂无未发布的公开变更。
 
+## v0.15.0 - 2026-07-13
+
+- Added reusable Agent Combo Templates for quickly preparing new meetings with preferred participants.
+- Added menu bar quick access, Radar meeting launch, and the Auto Review workflow.
+- Added macOS message notifications and clearer unread and running indicators.
+- Added file change summaries with convenient access to changed files.
+- Added clearer provider availability and runtime status information.
+- Improved responsiveness in long meetings and made switching between meetings feel faster and more stable.
+- Improved dark theme readability and overall interface details.
+- 新增可复用的 Agent 组合模板，创建 Meeting 时可以快速预填常用参与者。
+- 新增菜单栏快捷入口、Radar Meeting 快速启动和 Auto Review 工作流。
+- 新增 macOS 消息通知，并优化未读与运行状态提示。
+- 新增文件变更摘要，并可更方便地打开发生变化的文件。
+- 新增更清晰的 provider 可用性与运行状态展示。
+- 优化长 Meeting 性能，提升 Meeting 切换速度与稳定性。
+- 优化暗色主题可读性和多处界面细节。
+
 ## v0.14.0 - 2026-07-05
 
 - Added context window usage indicators for Claude and Codex participants, with compact usage summaries and detail popovers.
